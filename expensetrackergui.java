@@ -7,16 +7,21 @@ public class expensetrackergui extends JFrame {
 
     private JTextField nameField, amountField, categoryField;
     private JTextArea displayArea;
-    private ArrayList<expense> expenses = new ArrayList<>();
+     private ArrayList<expense> expenses = new ArrayList<>();
 
     public expensetrackergui() {
         setTitle("Expense Tracker");
         setSize(400, 400);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(new BorderLayout());
-
+        getContentPane().setBackground(new Color(245, 245, 245));
+        displayArea.setBackground(new Color(250, 250, 250));
+        displayArea.setBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY));
+   
         // Top panel (inputs)
-        JPanel panel = new JPanel(new GridLayout(4, 2, 5, 5));
+        JPanel panel = new JPanel(new GridLayout(4, 2, 10, 10));
+        panel.setBackground(Color.WHITE);
+        panel.setBorder(BorderFactory.createEmptyBorder(15, 15, 15, 15));
 
         panel.add(new JLabel("Expense Name:"));
         nameField = new JTextField();
@@ -47,6 +52,13 @@ public class expensetrackergui extends JFrame {
         addButton.addActionListener(e -> addExpense());
         totalButton.addActionListener(e -> showTotal());
         setVisible(true);
+        addButton.setBackground(new Color(76, 175, 80)); // green
+        addButton.setForeground(Color.WHITE);
+        addButton.setFocusPainted(false);
+
+        totalButton.setBackground(new Color(33, 150, 243)); // blue
+        totalButton.setForeground(Color.WHITE);
+        totalButton.setFocusPainted(false);
     }
 
     private void addExpense() {
