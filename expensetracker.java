@@ -13,6 +13,8 @@ public class expensetracker {
 System.out.println("2. Show All Expenses");
 System.out.println("3. Show Total Expenses");
 System.out.println("4. Show Category-wise Summary");
+System.out.println("5. Sort Expenses by Amount (Low to High)");
+System.out.println("6. Sort Expenses by Amount (High to Low)");
 System.out.println("0. Exit");
             System.out.print("Enter your choice: ");
             choice = sc.nextInt();
@@ -75,7 +77,37 @@ System.out.println("0. Exit");
         }
     }
     break;    
+    case 5:
+    for (int i = 0; i < expenses.size() - 1; i++) {
+        for (int j = i + 1; j < expenses.size(); j++) {
+            if (expenses.get(i).amount > expenses.get(j).amount) {
+                expense temp = expenses.get(i);
+                expenses.set(i, expenses.get(j));
+                expenses.set(j, temp);
+            }
+        }
+    }
+    System.out.println("Expenses sorted (Low to High):");
+    for (expense e : expenses) {
+        System.out.println(e.name + " | " + e.amount + " | " + e.category);
+    }
+    break;
 
+    case 6:
+    for (int i = 0; i < expenses.size() - 1; i++) {
+        for (int j = i + 1; j < expenses.size(); j++) {
+            if (expenses.get(i).amount < expenses.get(j).amount) {
+                expense temp = expenses.get(i);
+                expenses.set(i, expenses.get(j));
+                expenses.set(j, temp);
+            }
+        }
+    }
+    System.out.println("Expenses sorted (High to Low):");
+    for (expense e : expenses) {
+        System.out.println(e.name + " | " + e.amount + " | " + e.category);
+    }
+    break;
                 case 0:
                     System.out.println("Exiting...");
                     break;
