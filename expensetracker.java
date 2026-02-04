@@ -10,9 +10,10 @@ public class expensetracker {
         do {
             System.out.println("\n=== Expense Tracker ===");
             System.out.println("1. Add Expense");
-            System.out.println("2. Show All Expenses");
-            System.out.println("3. Show Total Expenses");
-            System.out.println("0. Exit");
+System.out.println("2. Show All Expenses");
+System.out.println("3. Show Total Expenses");
+System.out.println("4. Show Category-wise Summary");
+System.out.println("0. Exit");
             System.out.print("Enter your choice: ");
             choice = sc.nextInt();
             sc.nextLine(); // consume newline
@@ -43,6 +44,37 @@ public class expensetracker {
                     for (expense e : expenses) total += e.amount;
                     System.out.println("Total Expenses: " + total);
                     break;
+                case 4:
+    if (expenses.isEmpty()) {
+        System.out.println("No expenses added yet.");
+        break;
+    }
+
+    System.out.println("\nCategory-wise Summary:");
+    for (int i = 0; i < expenses.size(); i++) {
+        expense current = expenses.get(i);
+        double categoryTotal = 0;
+
+        for (int j = 0; j < expenses.size(); j++) {
+            if (expenses.get(j).category.equalsIgnoreCase(current.category)) {
+                categoryTotal += expenses.get(j).amount;
+            }
+        }
+
+        // Print only once per category
+        boolean printedBefore = false;
+        for (int k = 0; k < i; k++) {
+            if (expenses.get(k).category.equalsIgnoreCase(current.category)) {
+                printedBefore = true;
+                break;
+            }
+        }
+
+        if (!printedBefore) {
+            System.out.println(current.category + " : " + categoryTotal);
+        }
+    }
+    break;    
 
                 case 0:
                     System.out.println("Exiting...");
