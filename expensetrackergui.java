@@ -31,7 +31,10 @@ public class expensetrackergui extends JFrame {
         panel.add(categoryField);
 
         JButton addButton = new JButton("Add Expense");
+        JButton totalButton = new JButton("Show Total");
+
         panel.add(addButton);
+        panel.add(totalButton);
 
         add(panel, BorderLayout.NORTH);
 
@@ -42,7 +45,7 @@ public class expensetrackergui extends JFrame {
 
         // Button action
         addButton.addActionListener(e -> addExpense());
-
+        totalButton.addActionListener(e -> showTotal());
         setVisible(true);
     }
 
@@ -71,6 +74,19 @@ public class expensetrackergui extends JFrame {
         amountField.setText("");
         categoryField.setText("");
     }
+    private void showTotal() {
+    double total = 0;
+    for (expense e : expenses) {
+        total += e.amount;
+    }
+
+    JOptionPane.showMessageDialog(
+        this,
+        "Total Expense: " + total,
+        "Expense Summary",
+        JOptionPane.INFORMATION_MESSAGE
+    );
+}
 
     public static void main(String[] args) {
         new expensetrackergui();
